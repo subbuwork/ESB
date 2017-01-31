@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+	xmlns:osgi="http://www.springframework.org/schema/osgi" xmlns:cxf="http://camel.apache.org/schema/cxf"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf-2.8.3.xsd">
+
+	<camelContext id="camelFTP" xmlns="http://camel.apache.org/schema/spring">
+	
+	<camel:route id="ftp">
+	<camel:from uri="file:src/data/input?noop=true"></camel:from>
+	<camel:to uri="amq:queue:incomingOrders"></camel:to>
+	</camel:route>
+	
+	<camel:route id="fileAccess">
+	<camel:from uri="amq:queue:incomingOrders"></camel:from>
+	<camel:log message="Message returned from the queue is ${body}"></camel:log>
+	</camel:route>
+	</camelContext>
+</beans>	
+	

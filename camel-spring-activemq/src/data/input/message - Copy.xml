@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persons>
+<person>
+<name>Subbarao</name>
+<age>28</age>
+<profession>IT</profession>
+<sal>100k</sal>
+</person>
+
+<person>
+<name>Neelima</name>
+<age>26</age>
+<profession>IT</profession>
+<sal>100k</sal>
+</person>
+<person>
+<name>Aadhya</name>
+<age>28</age>
+<profession>IT</profession>
+<sal>100k</sal>
+</person>
+</persons>

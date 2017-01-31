@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+	xmlns:osgi="http://www.springframework.org/schema/osgi" xmlns:cxf="http://camel.apache.org/schema/cxf"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd       http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf-2.8.3.xsd">
+<bean id="amq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+<property name="connectionFactory" ref="singleCF" />
+		<property name="useSingleConnection" value="true" />
+		<property name="usePooledConnection" value="false" />
+		<property name="preserveMessageQos" value="true" />
+</bean>
+
+<bean id="singleCF" class="org.springframework.jms.connection.SingleConnectionFactory">
+<property name="targetConnectionFactory" ref="AMQCF"></property>
+</bean>
+
+<bean id="AMQCF" class="org.apache.activemq.ActiveMQConnectionFactory">
+<property name="userName" value="admin" />
+		<property name="password" value="admin" />
+		<property name="brokerURL" value="tcp://127.0.0.1:61616" />
+</bean>
+
+</beans>
